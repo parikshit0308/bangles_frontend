@@ -20,13 +20,13 @@ const routes: Routes = [
 
   {
     path: '',
-    redirectTo: 'auth/login',
+    redirectTo: 'products',
     pathMatch: 'full',
   },
 
   {
     path: '**',
-    redirectTo: 'auth/login',
+    redirectTo: 'products',
   },
 ];
 

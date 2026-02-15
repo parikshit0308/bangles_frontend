@@ -1,0 +1,40 @@
+<h2>{{ isEditMode ? 'Edit Product' : 'Add Product' }}</h2>
+
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+
+  <input type="text" formControlName="name" placeholder="Name">
+  <input type="text" formControlName="description" placeholder="Description">
+  <input type="number" formControlName="price" placeholder="Price">
+  <input type="text" formControlName="weight" placeholder="Weight">
+  <input type="text" formControlName="color" placeholder="Color">
+
+  <h3>Sizes</h3>
+
+  <div formArrayName="sizes">
+    <div *ngFor="let size of sizes.controls; let i = index" [formGroupName]="i">
+
+      <input type="text" formControlName="size" placeholder="Size (e.g. 2.4)">
+      <input type="number" formControlName="stock" placeholder="Stock">
+
+      <button type="button" (click)="removeSize(i)">Remove</button>
+
+    </div>
+  </div>
+
+  <button type="button" (click)="addSize()">Add Size</button>
+
+  <br><br>
+
+  <input type="file" (change)="onFileSelect($event)">
+
+  <br><br>
+
+  <button type="submit">
+    {{ isEditMode ? 'Update' : 'Add' }}
+  </button>
+
+  <button *ngIf="isEditMode" type="button" (click)="deleteProduct()">
+    Delete
+  </button>
+
+</form>

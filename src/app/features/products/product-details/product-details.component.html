@@ -1,0 +1,40 @@
+<div *ngIf="loading">Loading product...</div>
+
+<div *ngIf="product">
+
+    <img [src]="'http://localhost:5000' + product.image_url" width="300">
+
+    <h2>{{ product.name }}</h2>
+    <p>{{ product.description }}</p>
+
+    <h3>₹ {{ product.price }}</h3>
+    <p>Weight: {{ product.weight }}</p>
+    <p>Color: {{ product.color }}</p>
+
+    <div>
+        <strong>Available Sizes:</strong>
+        <span *ngFor="let size of product.sizes">
+            {{ size.size }} (Stock: {{ size.stock }})
+        </span>
+    </div>
+
+    <div>
+        <label>Select Size:</label>
+        <select [(ngModel)]="selectedSize">
+            <option *ngFor="let s of product.sizes" [value]="s.size">
+                {{ s.size }} (Stock: {{ s.stock }})
+            </option>
+        </select>
+    </div>
+
+    <div>
+        <button (click)="decrease()">-</button>
+        <span>{{ quantity }}</span>
+        <button (click)="increase()">+</button>
+    </div>
+
+    <button (click)="addToCart()">Add to Cart</button>
+
+    <p style="color:red">{{ errorMessage }}</p>
+
+</div>

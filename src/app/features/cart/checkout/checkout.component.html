@@ -1,0 +1,5 @@
+<h2>Checkout</h2>
+
+<button (click)="payNow()" [disabled]="loading">
+  {{ loading ? 'Processing...' : 'Pay Now 💳' }}
+</button>
